@@ -1,8 +1,12 @@
-
+import Greet from "./greet";
 function App() {
 
   return (
-    <h1>Hare Ram!</h1>
+    <>
+      <Greet/>
+      <h2>Hare Ram</h2>
+    </>
+    
   );
 }
 

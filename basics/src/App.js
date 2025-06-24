@@ -1,7 +1,9 @@
-
+import Greet from "./Greet";
 function App() {
   return (
-    <h1>Hare Krsna!</h1>
+    <>
+    <Greet />
+    </>
   );
 }
 
