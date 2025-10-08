@@ -2,7 +2,7 @@ import { Fragment } from "react"
 import { Link, Outlet } from "react-router"
 import CrownLogo from '../../assets/crown.svg'
 import './navigation.styles.scss'
-import SignIn from "../sign-in/sign-in.component"
+import Authentication from "../authentication/authentication.component"
 
 const Navigation = () => (
   <Fragment>
@@ -11,9 +11,8 @@ const Navigation = () => (
             <img className="logo" src={CrownLogo} alt="Crown Logo" />
         </Link>
         <div className="nav-links-container">
-            {/* <Link className="nav-link" to="/">Home</Link> | */}
             <Link className="nav-link" to="/shop">SHOP</Link> 
-            <Link to="/signin">SignIn</Link>
+            <Link to="/auth">SIGN IN</Link>
         </div>
     </nav>
     <Outlet/>
