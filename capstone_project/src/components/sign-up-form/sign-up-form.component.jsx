@@ -32,6 +32,7 @@ const SignUpForm = () => {
         if (e.target.password.value == e.target.confirmPassword.value){
             try{
                 const { user } = await createAuthUserWithEmailAndPassword(e.target.email.value, e.target.password.value)
+
                 await createUserDocumentFromAuth(user, { displayName });
                 resetFormField();
             }catch(e){
