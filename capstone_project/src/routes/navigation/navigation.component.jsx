@@ -9,11 +9,27 @@ import CrownLogo from '../../assets/crown.svg'
 import './navigation.styles.scss'
 import { signOutAuthUser } from "../../utils/firebase/firebase.utils"
 import { useState } from "react"
+import { useEffect } from "react"
+import { useRef } from "react"
+import { UserCartContext } from "../../contexts/userCart.context"
 
 const Navigation = () => {
   const {currentUser} = useContext(UserContext);
 
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  const {isCartOpen, setIsCartOpen} = useContext(UserCartContext);
+  const cartRef = useRef(null);
+
+  useEffect(()=>{
+    const handleClickOutsideDropDownBox = (e) =>{
+      if(cartRef.current && !cartRef.current.contains(e.target)) setIsCartOpen(false);
+    }
+
+    document.addEventListener('mousedown', handleClickOutsideDropDownBox);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutsideDropDownBox);
+    }
+  },[])
 
   return (
   <Fragment>
@@ -32,7 +48,7 @@ const Navigation = () => {
             }
             <CartIcon onClick = {() => setIsCartOpen(prev => !prev)}/>
         </div>
-        {isCartOpen && <CartDropDown/>}
+        {isCartOpen && <CartDropDown ref = {cartRef}/>}
     </nav>
     <Outlet/>
   </Fragment>

@@ -2,12 +2,22 @@ import './cart-dropdown.styles.scss'
 import Button from '../button/button.component'
 import { useContext } from 'react'
 import { UserCartContext } from '../../contexts/userCart.context'
+import { useNavigate } from 'react-router'
 
-export default function CartDropDown() {
+export default function CartDropDown({...otherProps}) {
   const { userSelectedProducts } = useContext(UserCartContext);
-
+  const { setIsCartOpen } = useContext(UserCartContext);
+  const navigate = useNavigate()
+  const goToCheckOutHandler = () => {
+    navigate('/checkout');
+    setIsCartOpen(false);
+  }
+  
   return (
-    <div className='cart-dropdown-container'>
+    <div 
+      className='cart-dropdown-container'
+      {...otherProps}
+    >
     {
       userSelectedProducts.length ? (
         <>
@@ -35,7 +45,12 @@ export default function CartDropDown() {
         </div>
       )
     }
-      <Button>GO TO CHECKOUT</Button> 
+        <Button
+          onClick = {goToCheckOutHandler}
+        >
+          GO TO CHECKOUT
+        </Button> 
+      
     </div>
   )
 }
