@@ -1,4 +1,7 @@
-.cart-dropdown-container {
+import styled from "styled-components";
+import {BaseButton, GoogleSignInButton, InvertedButton} from '../button/button.styles';
+
+export const CartDropdownContainer = styled.div`
   position: absolute;
   width: 240px;
   height: 340px;
@@ -13,24 +16,23 @@
   overflow-y: auto;
   overflow-x: hidden;
 
-  .empty-message {
+  ${BaseButton}, ${GoogleSignInButton}, ${InvertedButton} {
+    margin-top: auto;
+    font-size: 10px;
+  }
+`;
+export const EmptyMessage = styled.div`
     font-size: 18px;
     margin: 50px auto;
-  }
-
-  .cart-items {
+  
+`;
+export const CartItems = styled.div`
     height: 240px;
     display: flex;
     flex-direction: column;
     overflow: scroll;
-  }
-
-  button {
-    margin-top: auto;
-    font-size: 10px;
-  }
-}
-.cart-item-container {
+`;
+export const CartItemContainer = styled.div`
   width: 100%;
   display: flex;
   height: 80px;
@@ -39,16 +41,19 @@
   img {
     width: 30%;
   }
-
-  .item-details {
+`;
+export const ItemDetails = styled(CartItemContainer)`
     width: 70%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
     padding: 10px 20px;
-    .name {
-      font-size: 13px;
-    }
-  }
-}
+
+`;
+export const Name = styled.span`
+  font-size: 13px;
+`;
+export const Price = styled.span`
+  font-size: 13px;
+`;

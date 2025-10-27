@@ -1,8 +1,15 @@
-import './cart-dropdown.styles.scss'
 import Button from '../button/button.component'
 import { useContext } from 'react'
 import { UserCartContext } from '../../contexts/userCart.context'
 import { useNavigate } from 'react-router'
+import {
+  CartDropdownContainer,
+  CartItemContainer,
+  ItemDetails, 
+  Name, 
+  Price,
+  EmptyMessage,
+} from './cart-dropdown.styles';
 
 export default function CartDropDown({...otherProps}) {
   const { userSelectedProducts } = useContext(UserCartContext);
@@ -14,35 +21,33 @@ export default function CartDropDown({...otherProps}) {
   }
   
   return (
-    <div 
-      className='cart-dropdown-container'
+    <CartDropdownContainer
       {...otherProps}
     >
     {
       userSelectedProducts.length ? (
         <>
           {userSelectedProducts.map(product => (
-            <div 
+            <CartItemContainer
               key={product.id}
-              className='cart-item-container'
             >
               <img
                     src={product.imageUrl}
                     alt={product.name}
                 />
-              <div className='item-details'>
-              <span className='name'>{product.name}</span>
-                <span className='price'>{product.quantity} X {product.price}</span>
-              </div>
+              <ItemDetails>
+                <Name as='span'>{product.name}</Name>
+                <Price as='span'>{product.quantity} X {product.price}</Price>
+              </ItemDetails>
 
-            </div>
+            </CartItemContainer>
           ))}
         </>
         
       ) : (
-        <div className='empty-message'>
+        <EmptyMessage>
           No Product Selected
-        </div>
+        </EmptyMessage>
       )
     }
         <Button
@@ -51,6 +56,6 @@ export default function CartDropDown({...otherProps}) {
           GO TO CHECKOUT
         </Button> 
       
-    </div>
+    </CartDropdownContainer>
   )
 }

@@ -1,7 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from "react-router";
-import { ProductsProvider } from './contexts/product.context.jsx';  
+import { CategoriesProvider } from './contexts/categories.context.jsx';
 import { UserProvider } from './contexts/user.context.jsx';
 import {UserCartProvider} from './contexts/userCart.context.jsx';
 import App from './App.jsx'
@@ -11,11 +11,11 @@ createRoot(document.getElementById('root')).render(
   // <StrictMode>
   <BrowserRouter>
     <UserProvider>
-      <ProductsProvider>
+      <CategoriesProvider>
         <UserCartProvider>
           <App />
         </UserCartProvider>
-      </ProductsProvider>
+      </CategoriesProvider>
     </UserProvider>
   </BrowserRouter>
   // </StrictMode>,

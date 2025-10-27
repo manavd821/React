@@ -1,17 +1,20 @@
-import './cart-icon.styles.scss'
 import ShoppingIcon from '../../assets/shopping-bag.svg'
 import { useContext } from 'react'
 import { UserCartContext } from '../../contexts/userCart.context'
+import {
+  CartIconContainer,
+  ShoppingImage,
+  ItemCount,
+} from './cart-icon.styles'
 
 export default function CartIcon({...otherProps}) {
   const {totalItems} = useContext(UserCartContext);
   return (
-    <div 
+    <CartIconContainer
       {...otherProps}
-      className='cart-icon-container'
     >
-        <img src={ShoppingIcon} className = 'shopping-icon'/>
-        <span className='item-count'>{totalItems}</span>
-    </div>
+        <ShoppingImage as='img' src={ShoppingIcon}/>
+        <ItemCount as="span" className='item-count'>{totalItems}</ItemCount>
+    </CartIconContainer>
   )
 }
